@@ -16,24 +16,14 @@ public class ListaLDE {
             
             switch( opcao ){
                 case '1':
-                    System.out.print( "\nDigite uma letra p/ inserir: " );
-                    letra = sc.nextLine().charAt(0);
-                    lista.inserir(letra);
+                    
                     break;
                 case 'R': case 'r':
-                    System.out.print( "\nDigite uma letra p/ retirar: " );
-                    letra = sc.nextLine().charAt(0);
-                    if( lista.retirar(letra) )
-                        System.out.print( "Retirada realizada com sucesso!" );
-                    else
-                        System.out.print( "Erro: Letra não presente na lista!" );
-                    break;
+                    
                 case 'C': case 'c':
-                    lista.mostrarC("LDE");
-                    break;
+                    
                 case 'D': case 'd':
-                    lista.mostrarD("LDE");
-                    break;
+                    
             }
             
         }while( opcao != 'F' && opcao != 'f' );

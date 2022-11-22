@@ -1,8 +1,8 @@
 package listalde;
 
 public class No {
-    public int expoente;
-    public double somatoria;
+    public int exp;
+    public double coef;
     public No eloA, eloP;
     
     public No(){
@@ -10,9 +10,9 @@ public class No {
         eloP = null;
     }
     
-    public No(int exp, double soma ){
-        expoente = exp;
-        somatoria = soma;
+    public No(int expo, double coefici ){
+        exp = expo;
+        coef = coefici;
         eloA = null;
         eloP = null;
     }
