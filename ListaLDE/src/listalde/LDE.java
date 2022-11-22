@@ -59,6 +59,25 @@ public class LDE
         }
     }
     
+    public LDE multiplicar(LDE f1, LDE f2){
+        No l1 = f1.comeco;
+        No l2 = f2.comeco;
+        LDE f3 = new LDE();
+        int exp;
+        double coef;
+        while(l1 != null){
+            while(l2 != null){
+                exp = l1.exp + l2.exp;
+                coef = l1.coef * l2.coef;
+                f3.inserir(exp, coef);
+                l2 = l2.eloP;
+            }
+            l1 = l1.eloP;
+        }
+        
+        return f3;
+    }
+    
     public void somar(No n1, double coefi )
     {
         n1.coef = n1.coef + coefi;
