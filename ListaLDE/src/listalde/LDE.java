@@ -39,7 +39,7 @@ public class LDE {
         while( ant != null ){
             prox = ant.eloP;
             if( exp == ant.expoente || exp == prox.expoente ){
-                System.out.println("Elemento seleciinado já existe o que deseja fazer?");
+                System.out.println("Elemento selecionado já existe o que deseja fazer?");
             }
             if( exp > ant.expoente && exp < prox.expoente ){ 
                 ant.eloP = novo;
