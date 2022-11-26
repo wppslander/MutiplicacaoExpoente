@@ -11,14 +11,16 @@ public class LDE
         fim = null;
     } 
     
+    
     public boolean vazia()
     {
         return (comeco==null);
     }
 
-    public void inserir( int exp, double soma  )
+    
+    public void inserir( int exp, double coeficiente  )
     {
-        No novo =  new No(exp, soma);
+        No novo =  new No(exp, coeficiente);
         
         if( comeco == null )// caso 1
         { 
@@ -40,13 +42,13 @@ public class LDE
             fim = novo;
             return;
         }
-        // Caso 4 se já existe fazer o que deseja, subtrair somar ou multipicar
+        // Caso 4 se já existe fazer o que deseja, subtrair coeficienter ou multipicar
         No ant, prox;
         ant = comeco;
         while( ant != null ){
             prox = ant.eloP;
             if( exp == ant.exp){
-                somar(ant, ant.coef);
+                coeficienter(ant, ant.coef);
             }
             if( exp > ant.exp && exp < prox.exp ){ 
                 ant.eloP = novo;
@@ -58,6 +60,7 @@ public class LDE
             ant = ant.eloP;
         }
     }
+    
     
     public LDE multiplicar(LDE f1, LDE f2){
         No l1 = f1.comeco;
@@ -78,12 +81,14 @@ public class LDE
         return f3;
     }
     
-    public void somar(No n1, double coefi )
+    
+    public void coeficienter(No n1, double coefi )
     {
         n1.coef = n1.coef + coefi;
     }
     
-    public LDE somarLista(LDE f1, LDE f2)
+    
+    public LDE coeficienterLista(LDE f1, LDE f2)
     {
         LDE f3 = new LDE();
         No l1 = f1.comeco;
@@ -103,36 +108,38 @@ public class LDE
         return f3;
     }
     
+    
     public LDE subtrairLista(LDE f1, LDE f2)
     {
         LDE f3 = new LDE();
         No l1 = f1.comeco;
         No l2 = f2.comeco;
         
-        
-        if(l1.coef == l2.coef)
+        while(l1 != null || l2 != null)
         {
-            f3.subtrair(l1, l2.coef);
-        }
-        else
-        {
-            while(l1 != null)
+            if(l1.exp == l2.exp)
             {
-                f3.inserir(l1.exp, l1.coef);
+                f3.inserir(l1.exp, l1.coef - l2.coef);
                 l1 = l1.eloP;
-            }
-            while (l2 != null)
-            {
-                f3.inserir(l2.exp, l2.coef);
                 l2 = l2.eloP;
+                
+            }
+            else 
+            {
+                if(l1.exp > l2.exp)
+                {
+                    f3.inserir(l1.exp, l1.coef);
+                    l1 = l1.eloP;
+                }
+                else if(l2.exp > l1.exp)
+                {
+                    f3.inserir(l2.exp, l2.coef);
+                    l2 = l2.eloP;
+                }
             }
         }
+        
         return f3;
-    }
-    
-    public void subtrair(No n1, double coefi)
-    {
-        n1.coef = n1.coef - coefi;
     }
     
     
