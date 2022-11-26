@@ -70,9 +70,7 @@ public class LDE
         while(l1 != null){
             l2 = f2.comeco;
             while(l2 != null){
-                exp = l1.exp + l2.exp;
-                coef = l1.coef * l2.coef;
-                f3.inserir(exp, coef);
+                f3.inserir(l1.exp + l2.exp, l1.coef * l2.coef);
                 l2 = l2.eloP;
             }
             l1 = l1.eloP;
@@ -110,14 +108,22 @@ public class LDE
         
         while(l1 != null || l2 != null)
         {
-            if(l1 !=null && l2 != null){
-                if(l1.exp == l2.exp)
-                    {
-                        f3.inserir(l1.exp, l1.coef - l2.coef);
-                        l1 = l1.eloP;
-                        l2 = l2.eloP;
+            if(l1 == null )
+            {
+                f3.inserir(l2.exp, l2.coef);
+                l2 = l2.eloP;
+            }
+            else if(l2 == null)
+            {
+                f3.inserir(l1.exp, l1.coef);
+                l1 = l1.eloP;
+            }
+            else if(l1.exp == l2.exp)
+            {
+                f3.inserir(l1.exp, l1.coef - l2.coef);
+                l1 = l1.eloP;
+                l2 = l2.eloP;
 
-                    }
             }
             else 
             {
