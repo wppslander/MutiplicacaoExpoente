@@ -10,14 +10,12 @@ public class LDE
         comeco = null;
         fim = null;
     } 
-    
-    
+
     public boolean vazia()
     {
         return (comeco==null);
     }
 
-    
     public void inserir( int exp, double coeficiente  )
     {
         No novo =  new No(exp, coeficiente);
@@ -43,14 +41,15 @@ public class LDE
             return;
         }
         // Caso 4 se já existe fazer o que deseja, subtrair coeficienter ou multipicar
-        No ant, prox;
-        ant = comeco;
+        No ant = comeco;
         while( ant != null ){
-            prox = ant.eloP;
+            No prox = ant.eloP;
             if( exp == ant.exp){
-                coeficienter(ant, ant.coef);
+                ant.coef += coeficiente;
+                return;
             }
-            if( exp > ant.exp && exp < prox.exp ){ 
+            if( exp < ant.exp && exp > prox.exp )
+            { 
                 ant.eloP = novo;
                 novo.eloP = prox;
                 prox.eloA = novo;
@@ -60,15 +59,16 @@ public class LDE
             ant = ant.eloP;
         }
     }
-    
-    
-    public LDE multiplicar(LDE f1, LDE f2){
+
+    public LDE multiplicar(LDE f1, LDE f2)
+    {
         No l1 = f1.comeco;
         No l2 = f2.comeco;
         LDE f3 = new LDE();
         int exp;
         double coef;
         while(l1 != null){
+            l2 = f2.comeco;
             while(l2 != null){
                 exp = l1.exp + l2.exp;
                 coef = l1.coef * l2.coef;
@@ -80,15 +80,8 @@ public class LDE
         
         return f3;
     }
-    
-    
-    public void coeficienter(No n1, double coefi )
-    {
-        n1.coef = n1.coef + coefi;
-    }
-    
-    
-    public LDE coeficienterLista(LDE f1, LDE f2)
+
+    public LDE somarLista(LDE f1, LDE f2)
     {
         LDE f3 = new LDE();
         No l1 = f1.comeco;
@@ -117,12 +110,14 @@ public class LDE
         
         while(l1 != null || l2 != null)
         {
-            if(l1.exp == l2.exp)
-            {
-                f3.inserir(l1.exp, l1.coef - l2.coef);
-                l1 = l1.eloP;
-                l2 = l2.eloP;
-                
+            if(l1 !=null && l2 != null){
+                if(l1.exp == l2.exp)
+                    {
+                        f3.inserir(l1.exp, l1.coef - l2.coef);
+                        l1 = l1.eloP;
+                        l2 = l2.eloP;
+
+                    }
             }
             else 
             {
@@ -145,13 +140,17 @@ public class LDE
     
     public void mostrar(String frase){
         No aux;
-        
-        System.out.print( frase + ": " );
+        System.out.print( frase );
         aux = comeco;
         while( aux != null )
         {
-            if(aux.exp != 0) System.out.print( aux.coef + "X^" + aux.exp + " + ");
-            else System.out.print(aux.coef +" ");
+            if(aux.eloP == null && aux.exp >= 0) {
+                if (aux.exp != 0)System.out.print(aux.coef + "X^" + aux.exp);
+                else System.out.print(aux.coef + " ");
+                }
+            else if(aux.exp > 0) System.out.print( aux.coef + "X^" + aux.exp + " + ");
+            else if(aux.exp == 0) System.out.println(aux.coef +" + ");
+            else if(aux.exp < 0) System.out.print(" + " + aux.coef + "X^" + aux.exp );
             aux = aux.eloP;
         }
         System.out.println();

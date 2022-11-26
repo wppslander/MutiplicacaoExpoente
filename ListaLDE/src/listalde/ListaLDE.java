@@ -11,28 +11,11 @@ public class ListaLDE {
         l1 = new LDE();
         l2 = new LDE();
         l3 = new LDE();
-        /*
-        l1.inserir(2, 2);
-        l1.inserir(0, 7);
-        l1.inserir(0, 3);
-        l1.mostrar("Funcao1:");
-        
-        l2.inserir(2, 5);
-        l2.inserir(1, 3);
-        l2.inserir(0, 2);
-        l2.mostrar("Funcao 2:");
-        
-        l3 = l3.multiplicar(l1, l2);
-        l3.mostrar("Teste:");
-        
-        int exp;
-        double coef;
-        */
-        
+  
         do{
             
-            System.out.println("\nOpção ((1-inserir Elementos na função 1// 2-inserir elementos na função 2 // M-mostrar todas funções// *-Para multiplicar as duas funções// '-'-Para subtrair as duas funçõess// + Para somar as duas funções//F-fim): " );
-            opcao = sc.nextLine().charAt(0);
+            System.out.println("\nOpção ((1-inserir Elementos na função 1// 2-inserir elementos na função 2\nM-mostrar todas funções// *-Para multiplicar as duas funções// '-'-Para subtrair as duas funçõess// + Para somar as duas funções//F-fim): " );
+            opcao = sc.next().charAt(0);
             int exp;
             double coef;
             switch( opcao ){
